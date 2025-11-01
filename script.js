@@ -21,14 +21,17 @@ document.addEventListener('DOMContentLoaded',()=>{
     const burger = document.querySelector('.header__burger')
     const headerMenu = document.querySelector('.header__wrapper')
     const menuLinks = headerMenu.querySelectorAll('.header__link')
+    const menuBg = document.querySelector('.menu-bg')
     burger.addEventListener("click", function(e) {
         headerMenu.classList.toggle('active')
+        menuBg.classList.toggle('active')
         document.body.classList.toggle('no-scrolling')
     });
 
     menuLinks.forEach(link => {
         link.addEventListener("click", function () {
             headerMenu.classList.remove('active');
+            menuBg.classList.toggle('active')
             document.body.classList.remove('no-scrolling');
         });
     });
@@ -53,43 +56,35 @@ document.addEventListener('DOMContentLoaded',()=>{
 
 
     const swiperContainer = document.querySelector('.reviews__swiper');
-    const firstSlide = swiperContainer.querySelector('.swiper-slide:first-child');
-    const firstSlideHTML = firstSlide.outerHTML;
 
     let swiperReviews = new Swiper('.reviews__swiper', {
-    direction: "vertical",
-    slidesPerView: 'auto',
-    spaceBetween: 10,
-    speed: 3000,
-    autoplay: {
-        delay: 300000,
-    },
-    pagination: {
-        el: ".reviews__pagination",
-        clickable: true,
-    },
-    breakpoints: {
-        0: { 
-        direction: "horizontal",
-        autoplay: false,
-        speed: 500,
+        direction: "vertical",
+        slidesPerView: 'auto',
+        spaceBetween: 10,
+        speed: 5500,
+        autoplay: {
+            delay: 0,
+            disableOnInteraction: false,
         },
-        769: {
-            direction: "vertical",
+        pagination: {
+            el: ".reviews__pagination",
+            clickable: true,
         },
-    },
+        breakpoints: {
+            0: { 
+            direction: "horizontal",
+            autoplay: false,
+            speed: 500,
+            },
+            769: {
+                direction: "vertical",
+            },
+        },
     });
-
-    function toggleFirstSlide() {
-    const isMobile = window.innerWidth <= 768;
-    const firstInSwiper = swiperContainer.querySelector('.swiper-slide:first-child');
-
-    if (!isMobile && firstInSwiper && firstInSwiper.matches('.swiper-slide:first-child')) {
-        swiperReviews.removeSlide(0);
-        } else if (isMobile && !swiperContainer.querySelector('.swiper-slide:first-child')?.isEqualNode(firstSlide)) {
-            swiperReviews.prependSlide(firstSlideHTML);
-        }
-    }
+    
+    
+    swiperContainer.addEventListener("mouseenter", () => swiperReviews.autoplay.stop());
+    swiperContainer.addEventListener("mouseleave", () => swiperReviews.autoplay.start());
 
 
     let swiperWhy = null
@@ -114,11 +109,9 @@ document.addEventListener('DOMContentLoaded',()=>{
     }
 
     initSwipers()
-    toggleFirstSlide();
 
     window.addEventListener('resize', () => {
         initSwipers()
-        toggleFirstSlide()
     })
 
 

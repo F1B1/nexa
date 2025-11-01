@@ -69,6 +69,12 @@
       @content;
     }
   }
+  
+  @mixin mobile-small {
+    @media (max-width: (479px)) {
+      @content;
+    }
+  }
 
   // @mixin small-mobile {
   //   @media (max-width: (479px)) {
@@ -415,6 +421,23 @@ a{
   @include small-tablet(){
     padding-top: 14px;
   }
+  .menu-bg{
+    display: none;
+    @include small-tablet(){
+      width: 100%;
+      height: 100%;
+      backdrop-filter: blur(10px);
+      position: fixed;
+      left: 0;
+      top: -100%;
+      z-index: -1;
+      display: flex;
+      transition: all 0.3s ease 0s;
+      &.active{
+        top: 0;
+      }
+    }
+  }
   &__container {
   }
 
@@ -454,7 +477,7 @@ a{
       top: -100%;
       left: 0;
       width: calc(100% - 28px);
-      height: calc(100% - 80px);
+      max-height: 70vh;
       background-color: var(--bg-header);
       flex-direction: column;
       padding: 20px;
@@ -462,6 +485,7 @@ a{
       border-radius: 12px;
       margin: 0 14px;
       transition: all 0.4s ease 0s;
+      overflow: auto;
       &.active{
         top: 80px;
       }
@@ -498,6 +522,9 @@ a{
     display: flex;
     align-items:center;
     gap: 12px;
+    @include small-tablet(){
+      margin-top: 150px;
+    }
   }
 
   &__button {
@@ -543,17 +570,28 @@ a{
 
 .primary {
   padding-top: 129px;
-  background-image: url('../img/bg.webp');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center top;
+
   margin-bottom: 140px;
+  position: relative;
   @include small-tablet(){
     padding-top: 104px;
     margin-bottom: 38px;
     padding-bottom: 44px;
-    background-image: url('../img/bg-mobile.webp');
   }
+  &__bg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    img{
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+
 
   &__container {
   }
@@ -605,6 +643,7 @@ a{
     border-radius: 16px;
     border: 1px solid rgba($color: #fff, $alpha: .2);
     max-width: 200px;
+    width: 100%;
     background-color: rgba($color: #000, $alpha: .2);
     backdrop-filter: blur(40px);
     &-1{
@@ -661,6 +700,7 @@ a{
     display: flex;
     align-items: flex-end;
     justify-content: center;
+  
     @include small-tablet(){
       flex-direction: column;
       margin: 0;
@@ -715,11 +755,12 @@ a{
     transform: translateX(50%);
     bottom: 0;
     left: -50%;
-    opacity: .4;
+    opacity: .2;
+    height: 138px;
+    filter: blur(150px);
     @include small-tablet(){
       left: 50%;
       transform: translateX(-50%);
-      opacity: .2;
     }
   }
   &__container {
@@ -896,8 +937,16 @@ a{
   }
 
   &__icon {
+    width: 40px;
+    height: 40px;
+    img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
     @include small-tablet(){
-      max-width: 30px;
+      width: 30px;
+      height: 30px;
     }
   }
 
@@ -915,6 +964,11 @@ a{
 
   .circle{
     opacity: .3;
+    height: 138px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    filter: blur(150px);
   }
   &__container {
   }
@@ -951,7 +1005,7 @@ a{
         .grid{
           display: block;
           position: absolute;
-          top: 45px;
+          top: #{fluid(25px, 0px, 375px, 768px)};
           left: -5%;
           width: 110%;
           height: 414px;
@@ -959,8 +1013,14 @@ a{
           img{
             width: 100%;
             height: 100%;
-            object-fit: cover;
           }
+      }
+    }
+    @include mobile-small(){
+      .grid{
+        img{
+          object-fit: cover;
+        }
       }
     }
   }
@@ -1097,9 +1157,14 @@ a{
     display: flex;
     gap: 10px;
     margin-bottom: 32px;
-    @include small-tablet(){
-      flex-direction: column;
+    @include tablet(){
       margin-bottom: 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    @include mobile(){
+      display: flex;
+      flex-direction: column;
     }
   }
 
@@ -1113,14 +1178,9 @@ a{
     display: flex;
     flex-direction: column;
     min-height: 418px;
-    &-image{
-      .features__image{
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-      }
+    &-color{
+      background-image: url('../img/can/bg.webp');
+      background-size: cover;
     }
     @include small-tablet(){
       padding: 20px;
@@ -1130,6 +1190,7 @@ a{
   }
 
   &__image {
+    margin-bottom: 20px;
     img{
       width: 100%;
       height: 100%;
@@ -1137,6 +1198,10 @@ a{
     }
     @include small-tablet(){
       margin-bottom: 20px;
+    }
+    @include mobile(){
+      max-width: 360px;
+      margin: 0px auto;
     }
   }
 
@@ -1188,7 +1253,7 @@ a{
       width: 100%;
       height: 100%;
     }
-    @include small-tablet(){
+    @include tablet(){
       min-height: unset;
       padding: 20px;
       align-items:center;
@@ -1203,6 +1268,14 @@ a{
       }
       h3{
         max-width: 170px;
+      }
+    }
+    @include mobile(){
+      &-mobile{
+        .features__image{
+          max-width: unset;
+          margin: 0;
+        }
       }
     }
   }
@@ -1220,6 +1293,12 @@ a{
     }
     &-mobile{
       display: none;
+    }
+    @include tablet(){
+      justify-content: center;
+      h3{
+        margin-top: 0;
+      }
     }
     @include small-tablet(){
       padding: 20px;
@@ -1371,6 +1450,9 @@ a{
       min-height: 156px;
       height: auto;
       border: 1px solid rgba($color: #DCE8FF, $alpha: .12);
+      &:nth-child(1){
+        display: none;
+      }
       .reviews__top{
         margin-bottom: 0;
       }
@@ -1392,6 +1474,9 @@ a{
         padding: 0;
         gap: 0;
         width: calc(60% - 10px);
+        &:nth-child(1){
+          display: flex;
+        }
         .reviews__image{
           width: 100%;
           height: unset;
@@ -1548,7 +1633,9 @@ a{
         grid-template-rows: auto 1fr;
       }
       .faq__indicator{
-        transform: rotate(180deg);
+        img{
+          transform: rotate(180deg);
+        }
       }
     }
   }
@@ -1569,6 +1656,7 @@ a{
     @include small-tablet(){
       font-size: 16px;
       line-height: 22px;
+      font-weight: 500;
     }
   }
 
@@ -1580,6 +1668,9 @@ a{
     border-radius: 6px;
     background-color: var(--bg-button);
     transition: all 0.3s ease 0s;
+    img{
+      transition: all 0.3s ease 0s;
+    }
     @include small-tablet(){
       min-width: 32px;
       min-height: 32px;
@@ -1602,7 +1693,11 @@ a{
 .footer {
   margin-bottom: 80px;
   position: relative;
-
+  .circle{
+    top: -15px;
+    filter: blur(100px);
+    opacity: .5;
+  }
   &__container {
   }
 

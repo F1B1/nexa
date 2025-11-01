@@ -392,6 +392,26 @@ a:hover {
     padding-top: 14px;
   }
 }
+.header .menu-bg {
+  display: none;
+}
+@media (max-width: 768px) {
+  .header .menu-bg {
+    width: 100%;
+    height: 100%;
+    -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+    position: fixed;
+    left: 0;
+    top: -100%;
+    z-index: -1;
+    display: flex;
+    transition: all 0.3s ease 0s;
+  }
+  .header .menu-bg.active {
+    top: 0;
+  }
+}
 .header__body {
   display: grid;
   grid-template-columns: clamp(3.875rem, 48.3870967742vw + -19.3508064516rem, 15.125rem) auto;
@@ -430,7 +450,7 @@ a:hover {
     top: -100%;
     left: 0;
     width: calc(100% - 28px);
-    height: calc(100% - 80px);
+    max-height: 70vh;
     background-color: var(--bg-header);
     flex-direction: column;
     padding: 20px;
@@ -438,6 +458,7 @@ a:hover {
     border-radius: 12px;
     margin: 0 14px;
     transition: all 0.4s ease 0s;
+    overflow: auto;
   }
   .header__wrapper.active {
     top: 80px;
@@ -467,6 +488,11 @@ a:hover {
   display: flex;
   align-items: center;
   gap: 12px;
+}
+@media (max-width: 768px) {
+  .header__buttons {
+    margin-top: 150px;
+  }
 }
 .header__button {
   min-height: 44px;
@@ -511,19 +537,27 @@ a:hover {
 
 .primary {
   padding-top: 129px;
-  background-image: url("../img/bg.webp");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center top;
   margin-bottom: 140px;
+  position: relative;
 }
 @media (max-width: 768px) {
   .primary {
     padding-top: 104px;
     margin-bottom: 38px;
     padding-bottom: 44px;
-    background-image: url("../img/bg-mobile.webp");
   }
+}
+.primary__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+.primary__bg img {
+  width: 100%;
+  height: 100%;
 }
 .primary__top {
   max-width: 750px;
@@ -573,6 +607,7 @@ a:hover {
   border-radius: 16px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   max-width: 200px;
+  width: 100%;
   background-color: rgba(0, 0, 0, 0.2);
   -webkit-backdrop-filter: blur(40px);
           backdrop-filter: blur(40px);
@@ -685,13 +720,14 @@ a:hover {
   transform: translateX(50%);
   bottom: 0;
   left: -50%;
-  opacity: 0.4;
+  opacity: 0.2;
+  height: 138px;
+  filter: blur(150px);
 }
 @media (max-width: 768px) {
   .why .circle {
     left: 50%;
     transform: translateX(-50%);
-    opacity: 0.2;
   }
 }
 .why__body {
@@ -884,9 +920,20 @@ a:hover {
     justify-content: center;
   }
 }
+.why__icon {
+  width: 40px;
+  height: 40px;
+}
+.why__icon img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
 @media (max-width: 768px) {
   .why__icon {
-    max-width: 30px;
+    width: 30px;
+    height: 30px;
   }
 }
 .why__subtitle {
@@ -899,6 +946,11 @@ a:hover {
 
 .steps .circle {
   opacity: 0.3;
+  height: 138px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  filter: blur(150px);
 }
 @media (max-width: 768px) {
   .steps__header {
@@ -928,7 +980,7 @@ a:hover {
   .steps__columns .grid {
     display: block;
     position: absolute;
-    top: 45px;
+    top: clamp(1.5625rem, -6.3613231552vw + 3.0534351145rem, 0rem);
     left: -5%;
     width: 110%;
     height: 414px;
@@ -937,6 +989,10 @@ a:hover {
   .steps__columns .grid img {
     width: 100%;
     height: 100%;
+  }
+}
+@media (max-width: 479px) {
+  .steps__columns .grid img {
     -o-object-fit: cover;
        object-fit: cover;
   }
@@ -1064,10 +1120,17 @@ a:hover {
   gap: 10px;
   margin-bottom: 32px;
 }
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .features__body {
-    flex-direction: column;
     margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 576px) {
+  .features__body {
+    display: flex;
+    flex-direction: column;
   }
 }
 .features__column {
@@ -1081,12 +1144,9 @@ a:hover {
   flex-direction: column;
   min-height: 418px;
 }
-.features__column-image .features__image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+.features__column-color {
+  background-image: url("../img/can/bg.webp");
+  background-size: cover;
 }
 @media (max-width: 768px) {
   .features__column {
@@ -1094,6 +1154,9 @@ a:hover {
     min-height: 342px;
     text-align: center;
   }
+}
+.features__image {
+  margin-bottom: 20px;
 }
 .features__image img {
   width: 100%;
@@ -1104,6 +1167,12 @@ a:hover {
 @media (max-width: 768px) {
   .features__image {
     margin-bottom: 20px;
+  }
+}
+@media (max-width: 576px) {
+  .features__image {
+    max-width: 360px;
+    margin: 0px auto;
   }
 }
 .features__subtitle {
@@ -1154,7 +1223,7 @@ a:hover {
   width: 100%;
   height: 100%;
 }
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .features__item-big {
     min-height: unset;
     padding: 20px;
@@ -1173,6 +1242,12 @@ a:hover {
     max-width: 170px;
   }
 }
+@media (max-width: 576px) {
+  .features__item-big-mobile .features__image {
+    max-width: unset;
+    margin: 0;
+  }
+}
 .features__item-small {
   padding: 32px;
   background-color: rgba(0, 0, 0, 0.2);
@@ -1187,6 +1262,14 @@ a:hover {
 }
 .features__item-small-mobile {
   display: none;
+}
+@media (max-width: 1024px) {
+  .features__item-small {
+    justify-content: center;
+  }
+  .features__item-small h3 {
+    margin-top: 0;
+  }
 }
 @media (max-width: 768px) {
   .features__item-small {
@@ -1339,6 +1422,9 @@ a:hover {
   height: auto;
   border: 1px solid rgba(220, 232, 255, 0.12);
 }
+.reviews__swiper .swiper-slide:nth-child(1) {
+  display: none;
+}
 .reviews__swiper .swiper-slide .reviews__top {
   margin-bottom: 0;
 }
@@ -1361,6 +1447,9 @@ a:hover {
     padding: 0;
     gap: 0;
     width: calc(60% - 10px);
+  }
+  .reviews__swiper .swiper-slide:nth-child(1) {
+    display: flex;
   }
   .reviews__swiper .swiper-slide .reviews__image {
     width: 100%;
@@ -1501,7 +1590,7 @@ a:hover {
 .faq__item.show .faq__wrapper {
   grid-template-rows: auto 1fr;
 }
-.faq__item.show .faq__indicator {
+.faq__item.show .faq__indicator img {
   transform: rotate(180deg);
 }
 .faq__button {
@@ -1521,6 +1610,7 @@ a:hover {
   .faq__caption {
     font-size: 16px;
     line-height: 22px;
+    font-weight: 500;
   }
 }
 .faq__indicator {
@@ -1531,6 +1621,9 @@ a:hover {
   align-items: center;
   border-radius: 6px;
   background-color: var(--bg-button);
+  transition: all 0.3s ease 0s;
+}
+.faq__indicator img {
   transition: all 0.3s ease 0s;
 }
 @media (max-width: 768px) {
@@ -1556,6 +1649,11 @@ a:hover {
 .footer {
   margin-bottom: 80px;
   position: relative;
+}
+.footer .circle {
+  top: -15px;
+  filter: blur(100px);
+  opacity: 0.5;
 }
 .footer__wrapper {
   position: relative;

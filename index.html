@@ -28,8 +28,8 @@
                    <div class="header__wrapper">
                         <nav class="header__menu">
                             <ul class="header__list">
-                                <li class="header__item"><a href="#features" class="header__link menu-list-link">Как работает</a></li>
-                                <li class="header__item"><a href="#steps" class="header__link menu-list-link">Возможности</a></li>
+                                <li class="header__item"><a href="#steps" class="header__link menu-list-link">Как работает</a></li>
+                                <li class="header__item"><a href="#features" class="header__link menu-list-link">Возможности</a></li>
                                 <li class="header__item"><a href="#review" class="header__link menu-list-link">Отзывы</a></li>
                                 <li class="header__item"><a href="#faq" class="header__link menu-list-link">FAQ</a></li>
                             </ul>
@@ -52,6 +52,7 @@
                    <div class="header__burger">
                         <img src="img/burger.svg" alt="img" width="" heigth="" loading="lazy">
                    </div>
+                   <div class="menu-bg"></div>
                 </div>
             </div>
         </header>
@@ -101,7 +102,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="primary__bg"></div>
+                <div class="primary__bg">
+                    <picture>
+                        <source srcset="img/bg-mobile.png" media="(max-width: 768px)" />
+                        <img src="img/bg.webp" alt="img" width="" heigth="" loading="lazy">
+                    </picture>
+                </div>
             </section>
             <section class="why section">
                 <div class="circle"></div>
@@ -120,7 +126,7 @@
                             </div>
                             <div class="why__bottom">
                                 <div class="why__people">
-                                    <img src="img/why/people.webp" alt="img" width="" heigth="" loading="lazy">
+                                    <img src="img/why/people.png" alt="img" width="" heigth="" loading="lazy">
                                 </div>
                                 <p class="why__text">NEXA AI уже пользуется более 10.000 пользователей</p>
                                 <p class="why__text">Попробуйте и вы</p>
@@ -130,28 +136,28 @@
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide light">
                                     <div class="why__icon">
-                                        <img src="img/why/magicpen.png" alt="img" width="" heigth="" loading="lazy">
+                                        <img src="img/why/magicpen.webp" alt="img" width="" heigth="" loading="lazy">
                                     </div>
                                     <h3 class="why__subtitle subtitle">Умная адаптация</h3>
                                     <p class="why__desc">Алгоритм понимает, <br> что изображено на картинке, <br>и восстанавливает её естественно</p>
                                 </div>
                                 <div class="swiper-slide">
                                     <div class="why__icon">
-                                        <img src="img/why/colorfilter.png" alt="img" width="" heigth="" loading="lazy">
+                                        <img src="img/why/colorfilter.webp" alt="img" width="" heigth="" loading="lazy">
                                     </div>
                                     <h3 class="why__subtitle subtitle">Цвет без искажений</h3>
                                     <p class="why__desc" >Цвета  изображения <br> остаются яркими и точными, без «пластикового» эффекта</p>
                                 </div>
                                 <div class="swiper-slide light-mobile">
                                     <div class="why__icon">
-                                        <img src="img/why/document-text.png" alt="img" width="" heigth="" loading="lazy">
+                                        <img src="img/why/document-text.webp" alt="img" width="" heigth="" loading="lazy">
                                     </div>
                                     <h3 class="why__subtitle subtitle">Любые форматы</h3>
                                     <p class="why__desc">Поддержка и работа со всеми <br> форматами — от старых JPEG <br> до современных RAW</p>
                                 </div>
                                 <div class="swiper-slide">
                                     <div class="why__icon">
-                                        <img src="img/why/security-safe.png" alt="img" width="" heigth="" loading="lazy">
+                                        <img src="img/why/security-safe.webp" alt="img" width="" heigth="" loading="lazy">
                                     </div>
                                     <h3 class="why__subtitle subtitle">Безопасность файлов</h3>
                                     <p class="why__desc">Ваши изображения обрабатываются без <br> сохранения на сервере в целях <br> конфиденциальности</p>
@@ -161,7 +167,7 @@
                         </div>
                          <div class="why__bottom why__bottom-mobile">
                                 <div class="why__people">
-                                    <img src="img/why/people.webp" alt="img" width="" heigth="" loading="lazy">
+                                    <img src="img/why/people.png" alt="img" width="" heigth="" loading="lazy">
                                 </div>
                                 <p class="why__text">NEXA AI уже пользуется более 10.000 пользователей</p>
                                 <p class="why__text">Попробуйте и вы</p>
@@ -254,9 +260,12 @@
                             <h3 class="features__subtitle subtitle">Чёткие границы без искажений</h3>
                             <p class="features__desc">алгоритм убирает “лесенки”, сглаживает линии и делает края предметов аккуратными — как на фото с профкамеры</p>
                         </div>
-                        <div class="features__column features__column-image">
+                        <div class="features__column features__column-color">
                             <div class="features__image">
-                                <img src="img/can/img02.png" alt="img" width="" heigth="" loading="lazy">
+                                <picture>
+                                    <source srcset="img/can/img02-mobile.webp" media="(max-width: 479px)" />
+                                    <img src="img/can/img02.webp" alt="img" width="" heigth="" loading="lazy">
+                                </picture>
                             </div>
                             <h3 class="features__subtitle subtitle">Масштаб <br> без ограничений</h3>
                             <p class="features__desc">увеличивает от баннера до аватарки</p>
@@ -312,7 +321,6 @@
                                 <div class="swiper-slide">
                                     <div class="reviews__image">
                                         <img src="img/review/Image.webp" alt="img" width="" heigth="" loading="lazy">
-
                                     </div>
                                     <div class="reviews__top">
                                         <h3 class="reviews__subtitle">Алексей Г.</h3>
@@ -573,10 +581,10 @@
                     </a>
                     <div class="footer__body">
                         <ul class="footer__list">
-                            <li class="footer__item"><a href="#" class="footer__link">Как работает</a></li>
-                            <li class="footer__item"><a href="#" class="footer__link">Возможности</a></li>
-                            <li class="footer__item"><a href="#" class="footer__link">Отзывы</a></li>
-                            <li class="footer__item"><a href="#" class="footer__link">FAQ</a></li>
+                            <li class="footer__item"><a href="#steps" class="footer__link menu-list-link">Как работает</a></li>
+                            <li class="footer__item"><a href="#features" class="footer__link menu-list-link">Возможности</a></li>
+                            <li class="footer__item"><a href="#review" class="footer__link menu-list-link">Отзывы</a></li>
+                            <li class="footer__item"><a href="#faq" class="footer__link menu-list-link">FAQ</a></li>
                         </ul>
                         <ul class="footer__list footer__list-small">
                             <li class="footer__item"><a href="#" class="footer__link">Оферта</a></li>
